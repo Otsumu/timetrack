@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.header, .footer {
+    background-color: #fff; 
+    padding: 20px 0; 
+}
+
+.header_inner, .footer_inner, .main-content {
+    width: 100vw; 
+    margin: 0 auto; 
+    padding: 0 15px; 
+}
+
+.header_inner {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: normal; 
+    color: #333; 
+}
+
+.footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.company-name {
+    font-size: 12px;
+    font-weight: bold; 
+    color: #333;
+    display: block; 
+    text-align: center; 
+}
