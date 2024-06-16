@@ -9,6 +9,11 @@
 <form class="login-form" action="{{ route('login.post') }}" method="post">
 @csrf
   <h2>ログイン</h2>
+  @if (session('success'))
+    <div class="alert alert-success" style="text-align: center; font-size: 14px; color: rgb(147, 147, 147);">
+      {{ session('success') }}
+    </div>     
+  @endif
   @error('email')
   <p class=login-form__error-message> {{ $message }}</p>
   @enderror

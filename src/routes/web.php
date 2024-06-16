@@ -17,14 +17,14 @@ use App\Http\Controllers\AttendanceController;
 */
 
 Route::get('/register',[RegisteredUserController::class,'index'])->name('register');
-Route::post('/register',[RegisteredUserController::class,'register'])->name('register.post');;
+Route::post('/register',[RegisteredUserController::class,'register'])->name('register.post');
 Route::get('/login',[AuthenticatedSessionController::class,'index'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'postSes'])->name('login.post');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
 
 Route::middleware('auth')->group(function () {
-  Route::get('/', [AttendanceController::class, 'index'])->name('home');
+  Route::get('/index', [AttendanceController::class, 'index'])->name('home');
   Route::get('/attendance', [AttendanceController::class, 'showAttendance'])->name('attendance');
-  Route::post('/auth/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
+  Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 });
 
 

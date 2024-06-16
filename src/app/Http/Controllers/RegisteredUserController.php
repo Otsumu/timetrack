@@ -20,7 +20,8 @@ class RegisteredUserController extends Controller
         'name' => $validated['name'],
         'email' => $validated['email'],
         'password' => Hash::make($validated['password']), 
-    ]);
-        return view('auth.login');
-  }
+        ]);
+
+        return redirect()->route('login')->with('success', '登録が完了しました、ログインしてください');
+    }
 }
