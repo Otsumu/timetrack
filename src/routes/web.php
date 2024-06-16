@@ -16,14 +16,15 @@ use App\Http\Controllers\AttendanceController;
 |
 */
 
-Route::get('/auth/login',[AuthenticatedSessionController::class,'index']);
-Route::post('/auth/login', [AuthenticatedSessionController::class, 'postSes']);
-Route::get('/auth/register',[RegisteredUserController::class,'index']);
-Route::post('/auth/register',[RegisteredUserController::class,'register']);
+Route::get('/register',[RegisteredUserController::class,'index'])->name('register');
+Route::post('/register',[RegisteredUserController::class,'register'])->name('register.post');;
+Route::get('/login',[AuthenticatedSessionController::class,'index'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'postSes'])->name('login.post');
 
 Route::middleware('auth')->group(function () {
-  Route::get('/', [AttendanceController::class, 'index']);
-  Route::get('/attendance', [AttendanceController::class, 'showAttendance']);
+  Route::get('/', [AttendanceController::class, 'index'])->name('home');
+  Route::get('/attendance', [AttendanceController::class, 'showAttendance'])->name('attendance');
+  Route::post('/auth/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
 });
 
-Route::get('/get-ses', [AuthenticatedSessionController::class, 'getSes']);
+

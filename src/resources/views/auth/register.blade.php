@@ -6,7 +6,7 @@
 
 @section('content')
 <main>
-<form class="register-form" action="/auth/register" method="post">
+<form class="register-form" action="{{ route('register') }}" method="post">
 @csrf
 <h2>会員登録</h2>
 @error('name')
@@ -29,7 +29,7 @@
 
    <div class="have-account">
     <h3>アカウントをお持ちの方はこちらから<br>
-        <span style="display: block; text-align: center;"><a href="/login">ログイン</a></span></h3>
+        <span style="display: block; text-align: center;"><a href="{{ route('login') }}">ログイン</a></span></h3>
    </div>
 </form>
 </main>

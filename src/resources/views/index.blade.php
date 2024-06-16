@@ -11,9 +11,9 @@
         <li><a href="/">ホーム</a></li>
         <li><a href="">日付一覧</a></li>
         <li>
-          <form action="/" method="post">
+          <form action="/logout" method="post">
           @csrf
-          <a class="nav-menu__link" href="/">ログアウト</a>
+          <button type="submit" class="nav-menu__link" href="/">ログアウト</button>
           </form>
         </li>  
      @endif
@@ -24,7 +24,11 @@
 @section('content')
 <main>
   <div class="stamp">
+  @if(Auth::check())
   <h2 class="stamp-title">{{ Auth::user()->name }}さんお疲れ様です！</h2>
+  @else
+  <h2 class="stamp-title">認証されていません</h2>
+  @endif
   <div class="stamp-category">
     <p class="clock_in">勤務開始</p>
     <p class="clock_out">勤務終了</p>

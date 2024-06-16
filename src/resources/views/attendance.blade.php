@@ -11,9 +11,9 @@
         <li><a href="/">ホーム</a></li>
         <li><a href="">日付一覧</a></li>
         <li>
-          <a class="nav-menu__link" href="/logout">ログアウト</a>
           <form action="/logout" method="post">
           @csrf
+          <button class="nav-menu__link" href="/logout">ログアウト</button>
           </form>
         </li>  
       @endif

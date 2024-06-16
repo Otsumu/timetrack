@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RegisteredUser;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Hash;
 
 class RegisteredUserController extends Controller
 {
@@ -17,7 +19,7 @@ class RegisteredUserController extends Controller
         RegisteredUser::create ([
         'name' => $validated['name'],
         'email' => $validated['email'],
-        'password' => $validated['password'], 
+        'password' => Hash::make($validated['password']), 
     ]);
         return view('auth.login');
   }

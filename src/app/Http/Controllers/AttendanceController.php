@@ -7,12 +7,14 @@ use App\Models\BreakTime;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AttendanceController extends Controller
 {
     public function index() {
-        return view('index');
-    }
+            return view('index');
+        }
+
 
     public function showAttendance() {
         $attendancesByDate = [

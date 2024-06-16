@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\RegisteredUser;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UserDateSeeder;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserDateSeeder::class);
+        RegisteredUser::factory(35)->create();
 
     }
 }

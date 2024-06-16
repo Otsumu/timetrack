@@ -28,4 +28,14 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages() {
+        return [
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メール形式で入力してください',
+            'password.required' => 'パスワードを入力してください',
+            'password.min' => 'パスワードは8文字以上で入力してください',
+            'password.confirmed' => 'パスワードが一致しません',
+        ];
+    }
 }
