@@ -7,33 +7,32 @@ use App\Models\RegisteredUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
     public function index(){
-         return view('auth.login');
+        return view('auth.login');
     }
-    
-    public function store(LoginRequest $request){
+
+    public function login(LoginRequest $request){
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-         $request->session()->regenerate(true);
-
-         Log::info('User logged in: ', ['user' => Auth::user()]);
-
-         return redirect()->intended('/index');
+            Log::info('ログイン成功: User logged in: ' . Auth::user()->email);
+            
+            return redirect()->intended('/dashboard');
         } else {
-         return redirect('/login');
-        }
-    } 
+            Log::warning('ログイン失敗: Login attempt failed for email: ' . $request->email);
+            
+            return back()->withErrors([
+                'email' => 'メールアドレスまたはパスワードが正しくありません。',
+            ]);
+        }    
+    }
 
     public function destroy(Request $request) {
         Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
         return redirect('/login');
     }
 }
