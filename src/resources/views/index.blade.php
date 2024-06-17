@@ -11,9 +11,11 @@
         <li><a href="/">ホーム</a></li>
         <li><a href="">日付一覧</a></li>
         <li>
-          <form action="{{ route('logout') }}"  method="post">
-          @csrf
-          <button type="submit" class="nav-menu__link" href="/">ログアウト</button>
+          <form action="{{ route('logout') }}" method="post" style="display: inline;">
+            @csrf
+            <button type="submit" class="nav-menu__link">
+              ログアウト
+            </button>
           </form>
         </li>  
      @endif
