@@ -25,17 +25,46 @@
 
 @section('content')
 <main>
-  <div class="stamp">
   @if(Auth::check())
   <h2 class="stamp-title">{{ Auth::user()->name }}さんお疲れ様です！</h2>
-  @else
-  <h2 class="stamp-title">認証されていません</h2>
   @endif
+  @if(session('message'))
+  <div class="alert alert-success">
+    {{ session('message') }}
+  </div>
+  @endif
+  <div class="stamp">
+  <form class="index-form" action={{ route('attendance') }} method="post">
+  @csrf
   <div class="stamp-category">
-    <p class="clock_in">勤務開始</p>
-    <p class="clock_out">勤務終了</p>
-    <p class="break_start">休憩開始</p>
-    <p class="break_end">休憩終了</p>
+    @if($status == 0)
+      <button name="clock_in" type="submit">勤務開始</button>
+    @else
+      <button name="clock_in" disabled type="submit">勤務開始</button>
+    @endif
+  </div>
+  <div class="stamp-category">
+    @if($status == 1)  
+      <button name="clock_out" type="submit">勤務終了</button>
+    @else
+      <button name="clock_end" disabled type="submit">勤務終了</button>
+    @endif
+  </div>
+  <div class="stamp-category">
+    @if($status == 1)
+      <button name="break_start" type="submit">休憩開始</button>
+    @else
+      <button name="break_start" disabled type="submit">休憩開始</button>
+    @endif
+  </div>
+  <div class="stamp-category">
+    @if($status == 2)  
+      <button name="break_end" type="submit">休憩終了</button>
+    @else
+      <button name="break_end" disabled type="submit">休憩終了</button>
+    @endif
+  </div>
+  </form> 
 </div>
 </main>
 @endsection

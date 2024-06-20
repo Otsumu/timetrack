@@ -13,7 +13,7 @@ class RegisteredUser extends Authenticatable
     protected $table = 'registeredusers';
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','status',
     ];
 
     protected $hidden = [

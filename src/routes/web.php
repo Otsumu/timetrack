@@ -22,8 +22,11 @@ Route::get('/login',[AuthenticatedSessionController::class,'index'])->name('logi
 Route::post('/login', [AuthenticatedSessionController::class, 'login'])->name('login.post');
 
 Route::middleware('auth')->group(function () {
-  Route::get('/',[AttendanceController::class,'index'])->name('home');
-  Route::get('/attendance', [AttendanceController::class, 'showAttendance'])->name('attendance');
+  Route::get('/', [AttendanceController::class, 'index'])->name('home');
+  Route::get('/attendance', [AttendanceController::class, 'dateList'])->name('index');
+  Route::get('/date-list', [AttendanceController::class, 'dateList'])->name('date.list');
+  Route::get('/attendance/show/{date}', [AttendanceController::class, 'show'])->name('attendance.show'); 
+  Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance'); 
   Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
