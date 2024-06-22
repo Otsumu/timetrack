@@ -37,64 +37,53 @@
     text-decoration: underline;
 }
 
-.attendance-date {
+main {
     background-color: rgb(236, 235, 235);
-    width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
+    padding: 20px;
     box-sizing: border-box;
 }
 
 .stamp {
     display: flex;
-    justify-content: center; 
-    
-    font-size: 20px;
-    font-weight: 200;
-}
-  
-.stamp-title-container {
-    text-align: center; /* h2要素を中央揃え */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px auto;
 }
 
-table {
-    border-collapse: collapse;
-    margin-top: 20px;
-    padding: 100px 0;
+.stamp-title {
     text-align: center;
-    justify-content: center;
-    width: auto;
-    margin: 0 auto;
-    position: relative;
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: normal;
+    width: 100%; 
 }
 
-caption {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 30px;
-    font-size: 16px;
-    display: block;
+.attendance__table {
     text-align: center;
+    width: 100%;
 }
 
-
-tr {
-    border-top: 1px solid #a4a3a3;
-}
-
-th, td {
+.attendance__table th, 
+.attendance__table td {
     border-bottom: 1px solid #a4a3a3;
-    padding: 20px 90px;
-    font-size: 16px;
+    padding: 10px; 
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 35px;
 }
 
-th {
-    background-color: rgb(236, 235, 235);
+.attendance__table th {
+    border-top: 1px solid #a4a3a3; 
+    border-bottom: none;
 }
 
 .pagination {
     margin-top: 20px;
+}
+
+svg.w-5.h-5 {
+    width: 30px;
+    height: 30px;
 }

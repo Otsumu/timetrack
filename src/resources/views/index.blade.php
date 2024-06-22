@@ -36,35 +36,35 @@
   <div class="stamp">
   <form class="index-form" action={{ route('attendance') }} method="post">
   @csrf
-  <div class="stamp-category">
-    @if($status == 0)
-      <button name="clock_in" type="submit">勤務開始</button>
-    @else
-      <button name="clock_in" disabled type="submit">勤務開始</button>
-    @endif
-  </div>
-  <div class="stamp-category">
-    @if($status == 1)  
-      <button name="clock_out" type="submit">勤務終了</button>
-    @else
-      <button name="clock_end" disabled type="submit">勤務終了</button>
-    @endif
-  </div>
-  <div class="stamp-category">
-    @if($status == 1)
-      <button name="break_start" type="submit">休憩開始</button>
-    @else
-      <button name="break_start" disabled type="submit">休憩開始</button>
-    @endif
-  </div>
-  <div class="stamp-category">
-    @if($status == 2)  
-      <button name="break_end" type="submit">休憩終了</button>
-    @else
-      <button name="break_end" disabled type="submit">休憩終了</button>
-    @endif
-  </div>
+    <div class="stamp-category">
+      @if($status == 0)
+        <button name="clock_in" type="submit">勤務開始</button>
+      @else
+        <button name="clock_in" disabled type="submit">勤務開始</button>
+      @endif
+    </div>
+    <div class="stamp-category">
+      @if($status == 1)  
+        <button name="clock_out" type="submit">勤務終了</button>
+      @else
+        <button name="clock_end" disabled type="submit">勤務終了</button>
+      @endif
+    </div>
+    <div class="stamp-category">
+      @if($status == 1)
+        <button name="break_start" type="submit">休憩開始</button>
+      @else
+        <button name="break_start" disabled type="submit">休憩開始</button>
+      @endif
+    </div>
+    <div class="stamp-category">
+      @if($status == 2)  
+        <button name="break_end" type="submit">休憩終了</button>
+      @else
+        <button name="break_end" disabled type="submit">休憩終了</button>
+      @endif
+    </div>
   </form> 
-</div>
+  </div>
 </main>
 @endsection
