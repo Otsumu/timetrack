@@ -75,8 +75,8 @@ class AttendanceController extends Controller
       }  
     
     public function attendanceDate() {
-      $registeredUsers = RegisteredUser::paginate(5);  
-      return view('attendance.attendance_date', compact('registeredUsers'));
+      $attendances = Attendance::with('registeredUser')->paginate(5); 
+      return view('attendance.attendance_date', compact('attendances'));
       }
       
 }  

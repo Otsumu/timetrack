@@ -13,7 +13,7 @@ class Attendance extends Model
         'registereduser_id','clock_in','clock_out','work_time','date',
     ];
 
-    public function user(){
+    public function registeredUser(){
         return $this->belongsTo(RegisteredUser::class, 'registereduser_id');
     }
 

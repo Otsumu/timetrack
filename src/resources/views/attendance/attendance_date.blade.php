@@ -35,16 +35,19 @@
         <th class= "table__header" style="font-weight: bold;">休憩時間</th>
         <th class= "table__header" style="font-weight: bold;">勤務時間</th>
       </tr>
-    @foreach($registeredUsers as $user)
-      <tr class= "table__row">
-        <th class= "table__header">{{ $user->name }}</th>
-        <th class= "table__header">{{ $user->clock_in}}</th>
-        <th class= "table__header">{{ $user->clock_end}}</th>
-        <th class= "table__header">{{ $user->break_start}}</th>
-        <th class= "table__header">{{ $user->break_end}}</th>
+    @foreach($attendances as $attendance)
+        @php
+        $registereduser = $attendance->registeredUser;
+        @endphp
+      <tr class= "table__row">  
+        <th>{{ $registereduser->name ?? 'N/A' }}</th>
+        <th class= "table__header">{{ $attendance->clock_in }}</th>
+        <th class= "table__header">{{ $attendance->clock_out }}</th>
+        <th class= "table__header">{{ $attendance->break_start }}</th>
+        <th class= "table__header">{{ $attendance->break_end }}</th>
       </tr>
     @endforeach  
     </table>
-    {{ $registeredUsers ->links() }}
+    {{ $attendances ->links() }}
   </div>  
 @endsection

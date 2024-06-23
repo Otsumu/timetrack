@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\RegisteredUser;
+use App\Models\Attendance;
+use App\Models\BreakTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        RegisteredUser::factory(35)->create();
+        $this->call(AttendancesTableSeeder::class);
 
     }
 }

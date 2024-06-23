@@ -40,7 +40,7 @@
         <tr>
           <td>{{ $attendance->name }}</td>
           <td>{{ $attendance->clock_in }}</td>
-          <td>{{ $attendance->clock_end }}</td>
+          <td>{{ $attendance->clock_out }}</td>
           <td>{{ $attendance->break_start }}</td>
           <td>{{ $attendance->work_hours }}</td>
         </tr>
