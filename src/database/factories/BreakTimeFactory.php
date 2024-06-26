@@ -18,8 +18,8 @@ class BreakTimeFactory extends Factory
     {
         $dummyDate = $this->faker->dateTimeThisMonth;
     
-        $breakStart = $dummyDate->format('Y-m-d 08:00:00');
-        $breakEnd = $dummyDate->modify('+1 hour')->format('Y-m-d 09:00:00');
+        $breakStart = $dummyDate->format('H:i:s');
+        $breakEnd = $dummyDate->modify('+1 hour')->format('H:i:s');
     
         return [
             'break_start' => $breakStart,

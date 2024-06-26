@@ -8,6 +8,7 @@ use App\Models\BreakTime;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Pagination\Paginator;
@@ -27,6 +28,11 @@ class AttendanceController extends Controller
         $status = 0; 
       } 
       return view('index',compact('status'));
+    }
+
+    public function dateList(){
+    // dateList の処理を記述（例えば、必要なデータの取得やビューの表示など）
+      return view('attendance.attendance_date'); // 適切なビュー名を指定してください
     }
 
     public function attendance(Request $request) {
@@ -74,9 +80,42 @@ class AttendanceController extends Controller
           }
       }  
     
+    public function show(Request $request) {
+      Log::info('Show method called'); 
+      $displayDate = Carbon::now();
+      
+      $users = DB::table('attendances')
+          ->whereDate('date', $displayDate->toDateString())
+          ->paginate(5);
+          
+      Log::info('Display Date: ' . $displayDate); 
+      
+      return view('attendance.attendance_date', compact('displayDate', 'users'));
+  }
+  
+     public function perDate(Request $request) {
+      Log::info('perDate method called'); 
+      $displayDate = Carbon::parse($request->input('displayDate', Carbon::now()->toDateString()));
+      
+      if ($request->has('prevDate')) {
+          $displayDate->subDay();  
+      }
+
+      if ($request->has('nextDate')) {
+          $displayDate->addDay();
+      }
+
+      $users = DB::table('attendances')
+          ->whereDate('date', $displayDate->toDateString())
+          ->paginate(5);
+
+      Log::info('Display Date: ' . $displayDate);
+
+      return view('attendance.attendance_date', compact('displayDate', 'users'));
+  }   
+
     public function attendanceDate() {
       $attendances = Attendance::with('registeredUser')->paginate(5); 
-      return view('attendance.attendance_date', compact('attendances'));
-      }
-      
-}  
+            return view('attendance.attendance_date', compact('attendances'));
+  }
+}

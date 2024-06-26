@@ -23,10 +23,21 @@
 
 @section('content')
 <main>
-  @if(Auth::check())
-    <h2 class="stamp-title">{{Auth::user()->name}}さんの勤務状況</h2>
+@if(session('success'))
+  <div class="alert alert-success">
+    {{ session('success') }}
+  </div>
+@endif
+  <form class="date__wrap" action="" method="post">
+    @csrf
+    <button class="date-button" name="prevDate"><</button>
+    @isset($displayDate)
+    <input type="hidden" name="displayDate" value="{{ $displayDate }}">
+    <p class="date-text">{{ $displayDate ->format('Y-m-d') }}</p>
+    @endisset
+    <button class="date-button" name="nextDate">></button>
+  </form>
   <div class= "stamp">
-    @endif
     <table class= "attendance__table">
       <tr class= "table__row">
         <th class= "table__header" style="font-weight: bold;">名前</th>

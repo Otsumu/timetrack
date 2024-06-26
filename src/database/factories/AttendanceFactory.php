@@ -21,27 +21,25 @@ class AttendanceFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
-        $dummyDate = $this->faker->dateTimeThisMonth;
+    
+    public function definition() {
+      $dummyDate = $this->faker->dateTimeThisMonth;
 
-        $clockIn = Carbon::createFromFormat('H:i:s', $dummyDate->format('H:i:s'));
-        $clockOut = $clockIn->copy()->addHours(9);
+      $clockIn = Carbon::createFromTimeString($dummyDate->format('H:i:s'));
+      $clockOut = $clockIn->copy()->addHours(9);
+      
+      $interval = $clockIn->diff($clockOut);
+      $workTime = $interval->format('%H:%I:%S');
 
-        $clockInTime = \DateTime::createFromFormat('H:i:s', $clockIn->format('H:i:s'));
-        $clockOutTime = \DateTime::createFromFormat('H:i:s', $clockOut->format('H:i:s'));
+      return [
+        'registereduser_id' => function() {
+            return RegisteredUser::factory()->create()->id;
+        },
 
-        $interval = $clockInTime->diff($clockOutTime);
-        $workTime = $interval->format('%H:%I:%S');
-
-        return [
-            'registereduser_id' => function() {
-                return RegisteredUser::factory()->create()->id;
-            },
-            'clock_in' => $clockIn,
-            'clock_out' => $clockOut,
-            'work_time' => $workTime,
-            'date' => $dummyDate->format('H:i:s'),
+        'clock_in' => $clockIn->format('H:i:s'), 
+        'clock_out' => $clockOut->format('H:i:s'), 
+        'work_time' => $workTime,
+        'date' => $dummyDate->format('Y-m-d'),  
         ];
     }
 }
