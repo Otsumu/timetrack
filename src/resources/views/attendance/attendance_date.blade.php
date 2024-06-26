@@ -23,17 +23,14 @@
 
 @section('content')
 <main>
-@if(session('success'))
-  <div class="alert alert-success">
-    {{ session('success') }}
-  </div>
-@endif
-  <form class="date__wrap" action="" method="post">
+  <form class="date__wrap" action="{{ route('attendance.perDate') }}" method="post">
     @csrf
     <button class="date-button" name="prevDate"><</button>
     @isset($displayDate)
-    <input type="hidden" name="displayDate" value="{{ $displayDate }}">
-    <p class="date-text">{{ $displayDate ->format('Y-m-d') }}</p>
+      <input type="hidden" name="displayDate" value="{{ $displayDate }}">
+      <p class="date-text">{{ $displayDate ->format('Y-m-d') }}</p>
+    @else
+      <p class="date-text">日付がありません</p>
     @endisset
     <button class="date-button" name="nextDate">></button>
   </form>
@@ -59,6 +56,6 @@
       </tr>
     @endforeach  
     </table>
-    {{ $attendances ->links() }}
+    {{ $attendances ->links('vendor/pagination/paginate') }}
   </div>  
 @endsection

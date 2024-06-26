@@ -24,6 +24,8 @@ Route::post('/login', [AuthenticatedSessionController::class, 'login'])->name('l
 Route::middleware('auth')->group(function () {
   Route::get('/', [AttendanceController::class, 'index'])->name('home');
   Route::get('/attendance', [AttendanceController::class, 'dateList'])->name('index');
+  Route::get('/attendance/show',[AttendanceController::class, 'show'])->name('attendance.show');
+  Route::post('/attendance/perDate',[AttendanceController::class, 'perDate'])->name('attendance.perDate');
   Route::get('/attendance_date', [AttendanceController::class, 'attendanceDate'])->name('attendance_date');
   Route::post('/attendance', [AttendanceController::class, 'attendance'])->name('attendance'); 
   Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

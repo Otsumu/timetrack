@@ -55,48 +55,46 @@ class AttendanceController extends Controller
             $attendance->clock_in = $now_datetime; 
             $attendance->save();
             $status = 1;
-            return redirect()->route('attendance_date')->with('success', '勤務開始します、本日もよろしくお願いします！');
+            return redirect()->route('attendance_date');
           }
 
           if($request->has('break_start')) {
             $attendance->break_start = $now_datetime; 
             $attendance->save();
             $status = 2;
-            return redirect()->route('attendance_date')->with('success', '休憩開始します！');
+            return redirect()->route('attendance_date');
           }
 
           if($request->has('break_end')) {
             $attendance->break_end = $now_datetime; 
             $attendance->save();
             $status = 1;
-            return redirect()->route('attendance_date')->with('success', '休憩終了します！');
+            return redirect()->route('attendance_date');
           }
 
           if($request->has('clock_out')) {
             $attendance->clock_out  = $now_datetime;
             $attendance->save();
             $status = 3;
-            return redirect()->route('attendance_date')->with('success', '勤務終了です、本日もお疲れ様でした！');
+            return redirect()->route('attendance_date');
           }
       }  
     
     public function show(Request $request) {
-      Log::info('Show method called'); 
       $displayDate = Carbon::now();
-      
+      var_dump($displayDate);
+
       $users = DB::table('attendances')
           ->whereDate('date', $displayDate->toDateString())
           ->paginate(5);
-          
-      Log::info('Display Date: ' . $displayDate); 
       
       return view('attendance.attendance_date', compact('displayDate', 'users'));
   }
   
      public function perDate(Request $request) {
-      Log::info('perDate method called'); 
       $displayDate = Carbon::parse($request->input('displayDate', Carbon::now()->toDateString()));
-      
+      var_dump($displayDate);
+
       if ($request->has('prevDate')) {
           $displayDate->subDay();  
       }
@@ -108,8 +106,6 @@ class AttendanceController extends Controller
       $users = DB::table('attendances')
           ->whereDate('date', $displayDate->toDateString())
           ->paginate(5);
-
-      Log::info('Display Date: ' . $displayDate);
 
       return view('attendance.attendance_date', compact('displayDate', 'users'));
   }   
