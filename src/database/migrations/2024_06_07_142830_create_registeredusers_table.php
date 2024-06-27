@@ -19,7 +19,7 @@ class CreateRegisteredUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->integer('status')->nullable();
+            $table->integer('status')->nullable()->default(0);
             $table->timestamps();
         });
     }

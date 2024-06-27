@@ -12,10 +12,10 @@ class BreakTime extends Model
     protected $table = 'breaktimes';
 
     protected $fillable = [
-        'registereduser_id','attendance_id','break_start','break_end','break_time'
+        'registereduser_id','attendance_id','break_start','break_end','date','break_time'
     ];
 
     public function attendance() {
-        return $this->belongsTo(Attendance::class);
+        return $this->belongsTo(Attendance::class, 'attendance_id');
     }
 }

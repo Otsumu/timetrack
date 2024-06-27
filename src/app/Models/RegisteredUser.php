@@ -15,6 +15,10 @@ class RegisteredUser extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','status',
     ];
+    
+    protected $casts = [
+        'status' => 'integer',
+    ];
 
     protected $hidden = [
         'password', 'remember_token',

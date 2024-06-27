@@ -46,13 +46,14 @@
     @foreach($attendances as $attendance)
         @php
         $registereduser = $attendance->registeredUser;
+        $breaktime = $attendance->breaktime;
         @endphp
       <tr class= "table__row">  
-        <th>{{ $registereduser->name ?? 'N/A' }}</th>
-        <th class= "table__header">{{ $attendance->clock_in }}</th>
-        <th class= "table__header">{{ $attendance->clock_out }}</th>
-        <th class= "table__header">{{ $attendance->break_start }}</th>
-        <th class= "table__header">{{ $attendance->break_end }}</th>
+        <td>{{ $registereduser->name ?? 'N/A' }}</td>
+        <td class= "table__header">{{ $attendance->clock_in }}</td>
+        <td class= "table__header">{{ $attendance->clock_out }}</td>
+        <td class="table__data">{{ $attendance->breaktime->break_start ?? 'N/A' }}</td>
+        <td class="table__data">{{ $attendance->breaktime->break_end ?? 'N/A' }}</td>
       </tr>
     @endforeach  
     </table>
