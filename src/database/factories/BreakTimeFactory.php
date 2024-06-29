@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\RegisteredUser;
 use App\Models\Attendance;
 use App\Models\BreakTime;
+use Carbon\Carbon;
 
 class BreakTimeFactory extends Factory
 {
@@ -30,6 +31,7 @@ class BreakTimeFactory extends Factory
             'registereduser_id' => function() {
                 return RegisteredUser::factory()->create()->id;
             },
+            'date' => Carbon::now()->format('Y-m-d'), 
             'updated_at' => now(),
             'created_at' => now(),
         ];

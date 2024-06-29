@@ -14,7 +14,7 @@ class Attendance extends Model
     ];
 
     public function registeredUser(){
-        return $this->belongsTo(RegisteredUser::class, 'registereduser_id');
+        return $this->belongsTo(RegisteredUser::class,'registereduser_id');
     }
 
     public function breaktimes () {

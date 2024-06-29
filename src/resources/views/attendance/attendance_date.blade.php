@@ -26,37 +26,36 @@
   <form class="date__wrap" action="{{ route('attendance.perDate') }}" method="post">
     @csrf
     <button class="date-button" name="prevDate"><</button>
-    @isset($displayDate)
-      <input type="hidden" name="displayDate" value="{{ $displayDate }}">
-      <p class="date-text">{{ $displayDate ->format('Y-m-d') }}</p>
-    @else
-      <p class="date-text">日付がありません</p>
-    @endisset
+   
+      <input type="hidden" name="displayDate" value="{{ $displayDate->toDateString() }}">
+      <p class="date-text">{{ $displayDate->format('Y-m-d') }}</p>
+  
     <button class="date-button" name="nextDate">></button>
   </form>
-  <div class= "stamp">
-    <table class= "attendance__table">
-      <tr class= "table__row">
-        <th class= "table__header" style="font-weight: bold;">名前</th>
-        <th class= "table__header" style="font-weight: bold;">勤務開始</th>
-        <th class= "table__header" style="font-weight: bold;">勤務終了</th>
-        <th class= "table__header" style="font-weight: bold;">休憩時間</th>
-        <th class= "table__header" style="font-weight: bold;">勤務時間</th>
+  <div class="stamp">
+    <table class="attendance__table">
+      <tr class="table__row">
+        <th class="table__header" style="font-weight: bold;">名前</th>
+        <th class="table__header" style="font-weight: bold;">勤務開始</th>
+        <th class="table__header" style="font-weight: bold;">勤務終了</th>
+        <th class="table__header" style="font-weight: bold;">休憩開始</th>
+        <th class="table__header" style="font-weight: bold;">休憩終了</th>
       </tr>
-    @foreach($attendances as $attendance)
-        @php
-        $registereduser = $attendance->registeredUser;
-        $breaktime = $attendance->breaktime;
-        @endphp
-      <tr class= "table__row">  
-        <td>{{ $registereduser->name ?? 'N/A' }}</td>
-        <td class= "table__header">{{ $attendance->clock_in }}</td>
-        <td class= "table__header">{{ $attendance->clock_out }}</td>
-        <td class="table__data">{{ $attendance->breaktime->break_start ?? 'N/A' }}</td>
-        <td class="table__data">{{ $attendance->breaktime->break_end ?? 'N/A' }}</td>
-      </tr>
-    @endforeach  
+        @foreach($attendances as $attendance)
+          @php
+            $registereduser = $attendance->registeredUser;
+            $breaktime = $attendance->breaktimes->first(); 
+          @endphp
+          <tr class="table__row">  
+            <td>{{ $registereduser->name ?? 'N/A' }}</td>
+            <td class="table__header">{{ $attendance->clock_in }}</td>
+            <td class="table__header">{{ $attendance->clock_out }}</td>
+            <td class="table__data">{{ $breaktime->break_start ?? 'N/A' }}</td>
+            <td class="table__data">{{ $breaktime->break_end ?? 'N/A' }}</td>
+          </tr>
+        @endforeach  
     </table>
-    {{ $attendances ->links('vendor/pagination/paginate') }}
+    {{ $attendances->links('vendor/pagination/paginate') }}
   </div>  
+</main>
 @endsection
