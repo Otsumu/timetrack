@@ -6,22 +6,17 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\RegisteredUser;
 use App\Models\Attendance;
 use App\Models\BreakTime;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 class BreakTimeFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        $dummyDate = $this->faker->dateTimeThisMonth;
-    
-        $breakStart = $dummyDate->format('H:i:s');
-        $breakEnd = (clone $dummyDate)->modify('+1 hour')->format('H:i:s');
-    
+    protected $model = BreakTime::class;
+
+    public function definition() {
+      $dummyDate = $this->faker->dateTimeThisMonth;
+      $breakStart = $dummyDate->format('H:i:s');
+      $breakEnd = (clone $dummyDate)->modify('+1 hour')->format('H:i:s');
+        
         return [
             'break_start' => $breakStart,
             'break_end' => $breakEnd,

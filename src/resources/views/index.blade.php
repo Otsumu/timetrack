@@ -47,7 +47,7 @@
       @if($status == 1)  
         <button name="clock_out" type="submit">勤務終了</button>
       @else
-        <button name="clock_end" disabled type="submit">勤務終了</button>
+        <button name="clock_out" disabled type="submit">勤務終了</button>
       @endif
     </div>
     <div class="stamp-category">

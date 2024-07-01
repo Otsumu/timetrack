@@ -2,11 +2,19 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\RegisteredUser;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class RegisteredUserFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = RegisteredUser::class;
+
     /**
      * Define the model's default state.
      *
@@ -16,8 +24,11 @@ class RegisteredUserFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => $this->faker->password 
+            'email' => $this->faker->unique()->safeEmail, 
+            'password' => bcrypt('password'), 
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
+
