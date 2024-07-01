@@ -97,19 +97,3 @@ main {
     background-color: #f0f0f0;
     cursor: not-allowed;
 }
-
-.alert {
-    padding: 10px 40px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    color: red;
-    font-size: bold;
-    background-color: rgb(246, 133, 133);
-    border-color: red;
-}
-
-.alert-success {
-    color: red;
-    background-color: rgb(246, 133, 133);
-    border-color: red;
-}

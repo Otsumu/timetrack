@@ -24,7 +24,7 @@
 @section('content')
 <main>
     @if(Auth::check())
-      <h2 class="stamp-title">{{ Auth::user()->name }}さんの勤務状況</h2>
+      <h2 class="stamp-title">{{ Auth::user()->name }}さんの勤怠表</h2>
     @endif
   
     <div class="date-list">
