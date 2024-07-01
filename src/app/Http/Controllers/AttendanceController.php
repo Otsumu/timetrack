@@ -27,8 +27,14 @@ class AttendanceController extends Controller
         return view('index', compact('status', 'confirm_date','attendances'));
     }
 
-    public function dateList() {
-        return view('attendance.attendance_date'); 
+    public function dateList(Request $request) {
+        $user = Auth::user();
+
+        $attendances = Attendance::with(['breaktimes','registeredUser'])
+        ->where('registereduser_id', $user->id)
+        ->paginate(5);
+
+        return view('attendance.dateList',compact('attendances')); 
     }
 
     public function attendance(Request $request) {
