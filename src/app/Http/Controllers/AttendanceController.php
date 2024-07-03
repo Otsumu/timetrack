@@ -8,7 +8,6 @@ use App\Models\BreakTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
 
 class AttendanceController extends Controller
@@ -16,6 +15,12 @@ class AttendanceController extends Controller
     public function index() {
         $now_date = Carbon::now()->format('Y-m-d');
         $user = Auth::user();
+
+        if ($user->status === null) {
+            $user->status = 0; 
+            $user->save();
+        }
+        
         $status = $user->status ?? 0;
         $confirm_date = Attendance::where('registereduser_id', $user->id)
             ->where('date', $now_date)
@@ -39,14 +44,10 @@ class AttendanceController extends Controller
 
     public function attendance(Request $request) {
 
-        \Log::info('Attendance Request', $request->all()); 
-
         $now_date = now()->format('Y-m-d');
         $now_time = now()->format('H:i:s');
         $user = Auth::user();
         $end_of_day = '23:59:59';
-
-        Log::info('Attendance Request', ['request' => $request->all(), 'user_status' => $user->status]);
 
         $attendance = Attendance::firstOrNew([
             'registereduser_id' => $user->id,
@@ -106,8 +107,6 @@ class AttendanceController extends Controller
             }
         }
         $user->save();
-
-        Log::info('Updated User Status', ['user_status' => $user->status]);
 
         return redirect()->route('attendance_date');
     }

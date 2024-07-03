@@ -35,7 +35,7 @@
   @endif
   <div class="stamp">
   <form class="index-form" action={{ route('attendance') }} method="post">
-  @csrf
+    @csrf
     <div class="stamp-category">
       @if($status == 0)
         <button name="clock_in" type="submit">勤務開始</button>

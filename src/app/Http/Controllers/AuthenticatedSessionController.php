@@ -19,6 +19,10 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->only('email', 'password');
     
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $user ->status = 0;
+            $user -> save();
+            
             $request->session()->regenerate();
             return redirect()->intended('/');
         } else {
