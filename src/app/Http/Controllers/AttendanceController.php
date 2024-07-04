@@ -34,12 +34,16 @@ class AttendanceController extends Controller
 
     public function dateList(Request $request) {
         $user = Auth::user();
+        $displayDate = $request->input('displayDate');
 
         $attendances = Attendance::with(['breaktimes','registeredUser'])
         ->where('registereduser_id', $user->id)
         ->paginate(5);
-
-        return view('attendance.dateList',compact('attendances')); 
+ 
+        return view('attendance.dateList', [
+            'attendances' => $attendances,
+            'displayDate' => $displayDate, 
+        ]);
     }
 
     public function attendance(Request $request) {
@@ -141,20 +145,24 @@ class AttendanceController extends Controller
     public function user(Request $request) {
         $displayUser = $request->input('search__name');
         $userList = RegisteredUser::all();
-        $attendances = collect(); 
+        $displayDate = $request->input('displayDate');
+        $attendances = Attendance::query(); 
+    
         if ($displayUser) {
             $user = RegisteredUser::where('name', $displayUser)->first();
             
             if ($user) {
-                $attendances = Attendance::where('user_id', $user->id)->paginate(10);
+                $attendances = Attendance::where('user_id', $user->id);
             }
-        }
+        }   
+        $attendances = $attendances->paginate(5);
     
         return view('attendance.attendance_user', [
             'userList' => $userList,
             'searchparam' => $request->all(),
             'displayUser' => $displayUser,
             'attendances' => $attendances,
+            'displayDate' => $displayDate, 
         ]);
     }
 }

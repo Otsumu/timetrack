@@ -27,7 +27,7 @@
 @endsection
 
 @section('content')
-<form class="user__wrap" action="{{ route('attendance.user') }}" method="post">
+<form class="user__wrap" action="{{ route('attendance_user') }}" method="post">
   @csrf
     @if($displayUser !=null)
       <p class="user__text">{{ $displayUser }}さんの勤怠表</p>
@@ -74,7 +74,9 @@
           @endforeach
         </tbody>
     </table>
-    {{ $attendances->links() }}
+    {{ $attendances->appends(['displayDate' => $displayDate])->links('vendor/pagination/paginate') }}
+
+
   </div>
 </main>
 @endsection

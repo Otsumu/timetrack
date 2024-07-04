@@ -57,7 +57,8 @@
             @endforeach
           </tbody>
       </table>
-      {{ $attendances->links() }}
+      {{ $attendances->appends(['displayDate' => $displayDate])->links('vendor/pagination/paginate') }}
+
     </div>
 </main>
 @endsection
