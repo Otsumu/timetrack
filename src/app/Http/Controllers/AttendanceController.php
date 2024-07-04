@@ -137,4 +137,24 @@ class AttendanceController extends Controller
 
         return view('attendance.attendance_date', compact('displayDate', 'attendances'));
     }
+
+    public function user(Request $request) {
+        $displayUser = $request->input('search__name');
+        $userList = RegisteredUser::all();
+        $attendances = collect(); 
+        if ($displayUser) {
+            $user = RegisteredUser::where('name', $displayUser)->first();
+            
+            if ($user) {
+                $attendances = Attendance::where('user_id', $user->id)->paginate(10);
+            }
+        }
+    
+        return view('attendance.attendance_user', [
+            'userList' => $userList,
+            'searchparam' => $request->all(),
+            'displayUser' => $displayUser,
+            'attendances' => $attendances,
+        ]);
+    }
 }

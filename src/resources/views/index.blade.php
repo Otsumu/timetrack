@@ -9,7 +9,9 @@
     <ul class="nav-menu">
       @if(Auth::check())
         <li><a href="/">ホーム</a></li>
-        <li><a href="{{ route('attendance.dateList') }}">日付一覧</a></li>
+        <li><a href="{{ route('attendance_date') }}">日付一覧</a></li>
+        <li><a href="{{ route('attendance_user') }}">ユーザー一覧</a></li>
+        <li><a href="{{ route('attendance.dateList') }}">勤怠表</a></li>
         <li>
           <form action="{{ route('logout') }}" method="post" style="display: inline;">
             @csrf
@@ -18,7 +20,7 @@
             </button>
           </form>
         </li>  
-     @endif
+      @endif
     </ul>
 </div>
 @endsection
