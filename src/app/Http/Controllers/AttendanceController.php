@@ -152,17 +152,28 @@ class AttendanceController extends Controller
             $user = RegisteredUser::where('name', $displayUser)->first();
             
             if ($user) {
-                $attendances = Attendance::where('user_id', $user->id);
+                $attendances = Attendance::where('registereduser_id', $user->id);
             }
         }   
         $attendances = $attendances->paginate(5);
-    
+        
         return view('attendance.attendance_user', [
             'userList' => $userList,
             'searchparam' => $request->all(),
             'displayUser' => $displayUser,
             'attendances' => $attendances,
             'displayDate' => $displayDate, 
+        ]);
+    }
+
+    public function showAttedance($id) {
+        $user = RegisteredUser::find($id);
+        $attendances = Attendance::where('registereduser_id', $registeredUserId)->paginate(5);
+
+        return view('dummyuser',[
+            'registeredUser' => $user,
+            'attendances' => $attendances,
+            'displayDate' => now()->format('Y-m-d')
         ]);
     }
 }
