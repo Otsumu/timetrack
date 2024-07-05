@@ -35,7 +35,7 @@
       <p class="user__text">ユーザーを選択して下さい</p>
     @endif
 
-    <div class="search__item">
+    <div class="search__container">
         <input class="search__input" type="text" name="search__name" placeholder="名前検索" value="{{ $searchparam['name'] ?? ''}}" list="user_list">
         <datalist id= "user_list">
             @if($userList)

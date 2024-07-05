@@ -15,7 +15,7 @@
 .pagination__list {
     list-style: none;
     text-decoration: none;
-    border: 1px solid rgb(102, 96, 129);
+    border: 1px solid rgb(169, 162, 162);;
     padding: 7px 15px;
     box-sizing: border-box;
 }
@@ -32,13 +32,13 @@
 
 .pagination__item {
     text-decoration: none;
-    color:rgb(55, 118, 234);
+    color: #067eff;
 }
 
 .active {
     color: white;
-    background-color: rgb(55,118,234);
-    border: 1px solid rgb(55,118,234);
+    background-color: #067eff;
+    border: 1px solid #067eff;
     padding: 7px 15px;
     box-sizing: border-box;
 }
