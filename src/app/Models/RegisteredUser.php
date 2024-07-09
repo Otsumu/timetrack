@@ -2,22 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail; 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable; 
-use Illuminate\Database\Eloquent\Model;
 
-class RegisteredUser extends Authenticatable 
+class RegisteredUser extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'registeredusers';
 
     protected $fillable = [
-        'name', 'email', 'password','status',
+        'name', 'email', 'password','status','email_verified_at', 
     ];
     
     protected $casts = [
         'status' => 'integer',
+        'email_verified_at' => 'datetime',
     ];
 
     protected $hidden = [

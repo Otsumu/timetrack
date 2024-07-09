@@ -7,7 +7,7 @@
 
 @section('header_inner-right')
 <div class="header-right">
-    <ul class="nav-menu">
+    <ul class="nav-menu" style="display: inline;">
       @if(Auth::check())
         <li><a href="/">ホーム</a></li>
         <li><a href="{{ route('attendance_date') }}">日付一覧</a></li>

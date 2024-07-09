@@ -35,5 +35,9 @@ Route::middleware('auth')->group(function () {
   Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-
-
+Route::get('/email/verify',function() {
+  return view('auth.verify-email');  
+})->middleware('auth')->name('verification.notice');
+Route::get('/email/verification-notification',[AuthenticatedSessionController::class,'send'])
+->middleware('auth')
+->name('verification.send');
