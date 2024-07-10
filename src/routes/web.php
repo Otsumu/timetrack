@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AttendanceController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,28 +17,24 @@ use App\Http\Controllers\AttendanceController;
 |
 */
 
-Route::get('/register',[RegisteredUserController::class,'index'])->name('register');
-Route::post('/register',[RegisteredUserController::class,'register'])->name('register.post');
-Route::get('/login',[AuthenticatedSessionController::class,'index'])->name('login');
+Route::get('/register', [RegisteredUserController::class, 'index'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'register'])->name('register.post');
+Route::get('/email/verify', function () {
+  return view('auth.verify-email');
+})->name('auth.verify-email');
+Route::get('/login', [AuthenticatedSessionController::class, 'index'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'login'])->name('login.post');
 
 Route::middleware('auth')->group(function () {
-  Route::get('/', [AttendanceController::class, 'index'])->name('home');
-  Route::get('/attendance', [AttendanceController::class, 'dateList'])->name('attendance.dateList');
-  Route::get('/attendance/show',[AttendanceController::class, 'show'])->name('attendance.show');
-  Route::get('/attendance/perDate', [AttendanceController::class, 'perDate'])->name('attendance.perDate');
-  Route::post('/attendance/perDate', [AttendanceController::class, 'perDate'])->name('attendance.perDate');
-  Route::get('/attendance_date', [AttendanceController::class, 'show'])->name('attendance_date');
-  Route::post('/attendance', [AttendanceController::class, 'attendance'])->name('attendance'); 
-  Route::get('/attendance/user',[AttendanceController::class,'user'])->name('attendance_user');
-  Route::post('/attendance/user', [AttendanceController::class, 'user'])->name('attendance_user');
-  Route::get('/attendance/user/{id}',[AttendanceController::class,'showAttendance'])->name('attendance.user.show');
-  Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-});
-
-Route::get('/email/verify',function() {
-  return view('auth.verify-email');  
-})->middleware('auth')->name('verification.notice');
-Route::get('/email/verification-notification',[AuthenticatedSessionController::class,'send'])
-->middleware('auth')
-->name('verification.send');
+    Route::get('/', [AttendanceController::class, 'index'])->name('home');
+    Route::get('/attendance', [AttendanceController::class, 'dateList'])->name('attendance.dateList');
+    Route::get('/attendance/show', [AttendanceController::class, 'show'])->name('attendance.show');
+    Route::get('/attendance/perDate', [AttendanceController::class, 'perDate'])->name('attendance.perDate');
+    Route::post('/attendance/perDate', [AttendanceController::class, 'perDate'])->name('attendance.perDate');
+    Route::get('/attendance_date', [AttendanceController::class, 'show'])->name('attendance_date');
+    Route::post('/attendance', [AttendanceController::class, 'attendance'])->name('attendance'); 
+    Route::get('/attendance/user', [AttendanceController::class, 'user'])->name('attendance_user');
+    Route::post('/attendance/user', [AttendanceController::class, 'user'])->name('attendance_user');
+    Route::get('/attendance/user/{id}', [AttendanceController::class, 'showAttendance'])->name('attendance.user.show');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+  });

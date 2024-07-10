@@ -6,7 +6,7 @@
 
 @section('content')
 <main>
-<form class="register-form" action="{{ route('register') }}" method="post">
+<form class="register-form" action="{{ route('register.post') }}" method="post">
 @csrf
 <h2>会員登録</h2>
 @error('name')

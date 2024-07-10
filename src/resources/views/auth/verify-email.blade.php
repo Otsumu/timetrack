@@ -9,24 +9,20 @@
 <main>  
     <div class="header__wrap">
         <div class="header__text">
-            {{ ('メールアドレスをご確認下さい') }}
-        </div>
-    </div>
-    <div class="body__wrap">
+            {{ __('登録されたメールアドレスをご確認下さい。') }}
         @if(session('resent'))
-        <div class="alert-seccess" role="alert">
-            {{ ('ご登録頂きましたメールアドレスに確認用のリンクをお送りしました' )}}
-        </div>
+          <h2 class="alert-success" role="alert">
+            {{ __('ご登録頂きましたメールアドレスに確認用のリンクをお送りしました') }}
+          </h2>
         @endif
-
-        <p class="body__text">{{ ('メールをご確認下さい') }}</p>
-        <p class="body__text">{{ ('もし確認用メールが届いていない場合は下記をクリックして下さい') }}</p>
-        <form class="verify-email-form" action={{ route('verification.send') }} mathod="post">
+        </div>
+        <div class="body__wrap">
+        <p class="body__text">{!! __('メールをご確認下さい。<br>もし確認用メールが届いていない場合は下記をクリックして下さい！') !!}</p>
+        <form class="verify-email-form" action="{{ route('verification.send') }}" method="post">
           @csrf
-          <button class="verify-email-btn" type="submit">{{ ('確認メールを再送する') }}</button>
+          <button class="verify-email-btn" type="submit">{{ __('確認メールを再送信する') }}</button>
         </form>
-
-        <a class="back__button" href="{{ route('logout') }}">戻る</a>
+        </div>
     </div>
 </main>
 @endsection

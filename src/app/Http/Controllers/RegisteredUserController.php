@@ -7,6 +7,8 @@ use App\Models\RegisteredUser;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+
 
 class RegisteredUserController extends Controller
 {
@@ -16,12 +18,16 @@ class RegisteredUserController extends Controller
 
     public function register(RegisterRequest $request) {
         $validated = $request->validated();
-        RegisteredUser::create ([
+        $user = RegisteredUser::create ([
         'name' => $validated['name'],
         'email' => $validated['email'],
         'password' => Hash::make($validated['password']), 
         ]);
 
-        return redirect()->route('login')->with('success', '登録が完了しました、ログインしてください');
+        auth()->login($user);
+
+        event(new Registered($user));
+
+        return redirect()->route('auth.verify-email')->with('resent', true);
     }
 }

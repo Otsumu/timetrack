@@ -5,10 +5,8 @@
 }
 
 .header__text {
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 22px;
 }
-
 
 .body__wrap {
     padding-top: 65px;
@@ -17,32 +15,20 @@
 }
 
 .body__text {
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 22px;
 }
 
 .alert-success {
     font-size: 16px;
-    font-weight: bold;
     color: rgb(60, 60, 251);
 }
 
 .verify-email-btn {
-    display: inline;
-    margin-top: 10px;
-    padding: 20px;
-    font-size: 16px;
-    color: red;
-    background-color:  #fff;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.back__button {
-    display: block;
     margin-top: 20px;
-    padding: 30px;
-    font-weight: bold;
-    font-size: 20px;
-    color: rgb(60,60,251);
-    text-decoration: none;
+    border: 2px solid rgb(60, 60, 251); 
+    background-color: white; 
+    color: rgb(60, 60, 251);
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
 }
