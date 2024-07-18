@@ -13,22 +13,22 @@ class BreakTimeFactory extends Factory
     protected $model = BreakTime::class;
 
     public function definition() {
-      $dummyDate = $this->faker->dateTimeThisMonth;
-      $breakStart = $dummyDate->format('H:i:s');
-      $breakEnd = (clone $dummyDate)->modify('+1 hour')->format('H:i:s');
-        
-        return [
-            'break_start' => $breakStart,
-            'break_end' => $breakEnd,
-            'attendance_id' => function() {
-                return Attendance::factory()->create()->id;
-            },
-            'registereduser_id' => function() {
-                return RegisteredUser::factory()->create()->id;
-            },
-            'date' => Carbon::now()->format('Y-m-d'), 
-            'updated_at' => now(),
-            'created_at' => now(),
-        ];
-    }
+        $dummyDate = $this->faker->dateTimeThisMonth;
+        $breakStart = $dummyDate->format('H:i:s');
+        $breakEnd = (clone $dummyDate)->modify('+1 hour')->format('H:i:s');
+          
+          return [
+              'break_start' => $breakStart,
+              'break_end' => $breakEnd,
+              'attendance_id' => function() {
+                  return Attendance::factory()->create()->id;
+              },
+              'registereduser_id' => function() {
+                  return RegisteredUser::factory()->create()->id;
+              },
+              'date' => Carbon::now()->format('Y-m-d'), 
+              'updated_at' => now(),
+              'created_at' => now(),
+          ];
+      }
 }

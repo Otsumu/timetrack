@@ -26,12 +26,13 @@
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="pagination__item active" aria-current="page">
-                            <a class="pagination__item active" href="#">{{ $page }}</a>
-                        </li>
+                      <li class="pagination__list active" aria-current="page">
+                        <a class="pagination__item active" href="#">{{ $page }}</a>
+                      </li>
                     @else
-                        <li class="pagination__list">
-                            <a class="pagination__item" href="{{ $url }}">{{ $page }}</a></li>
+                      <li class="pagination__list">
+                        <a class="pagination__item" href="{{ $url }}">{{ $page }}</a>
+                      </li>
                     @endif
                 @endforeach
             @endif
