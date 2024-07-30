@@ -26,7 +26,7 @@ http://15.168.8.140/
   - ユーザー別勤怠管理
 
 ## 使用技術
-　- Laravel Framework :Ver 8.83.27
+  - Laravel Framework :Ver 8.83.27
 　
   - PHP :Ver 8.3.9
 　
@@ -41,7 +41,7 @@ http://15.168.8.140/
 ![ER図](README/images/er.png)
 
 ## 環境構築　
-このプロジェクトをローカルで動作させるための手順です。
+このプロジェクトをローカルで動作させるための手順です。<br>
 　1.リポジトリのクローン　https://github.com/Otsumu/timetrack.git<br>
 　2.ディレクトリに移動　cd timetrack<br>
 　3.依存関係のインストール　composer install<br>
