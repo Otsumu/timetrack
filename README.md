@@ -42,13 +42,14 @@ http://15.168.8.140/
 
 ## 環境構築　
 このプロジェクトをローカルで動作させるための手順です。<br>
-　1.リポジトリのクローン　https://github.com/Otsumu/timetrack.git<br>
-　2.ディレクトリに移動　cd timetrack<br>
-　3.依存関係のインストール　composer install<br>
-　4.環境ファイルの作成　cp .env.example .env<br>
-　5.データーベースの設定　nano .env<br>
-　6.アプリケーションキーの生成　php artisan key.generate<br>
-　7.データーベースのマイグレーション　php artisan migrate<br>
-　8.アプリケーションの起動　php artisan serve<br>
-　9.アプリケーションへのアクセス　http://localhost
+　1.　リポジトリのクローン　https://github.com/Otsumu/timetrack.git<br>
+　2.　ディレクトリに移動　cd timetrack<br>
+　3.　依存関係のインストール　composer install<br>
+　4.　環境ファイルの作成　cp .env.example .env<br>
+　5.　データーベースの設定　nano .env<br>
+　6.　アプリケーションキーの生成　php artisan key.generate<br>
+　7.　データーベースのマイグレーション　php artisan migrate<br>
+　8.　アプリケーションの起動　php artisan serve<br>
+　9.　アプリケーションへのアクセス　http://localhost
+
 
