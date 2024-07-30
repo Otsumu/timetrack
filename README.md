@@ -27,11 +27,11 @@ http://15.168.8.140/
 
 ## 使用技術
   - Laravel Framework :Ver 8.83.27
-　
+  
   - PHP :Ver 8.3.9
-　
+  
   - mysql :Ver 8.3.0
-　
+  
   - HTML、CSS
 
 ## テーブル設計
@@ -50,5 +50,5 @@ http://15.168.8.140/
 　6.アプリケーションキーの生成　php artisan key.generate<br>
 　7.データーベースのマイグレーション　php artisan migrate<br>
 　8.アプリケーションの起動　php artisan serve<br>
-　9.アプリケーションへのアクセル　http://localhost
+　9.アプリケーションへのアクセス　http://localhost
 
